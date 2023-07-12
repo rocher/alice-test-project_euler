@@ -1,0 +1,33 @@
+with "config/alice_project_euler_config.gpr";
+project Alice_Project_Euler is
+
+   for Source_Dirs use ("src/**", "config/");
+   for Object_Dir use "obj/" & Alice_Project_Euler_Config.Build_Profile;
+   for Create_Missing_Dirs use "True";
+   for Exec_Dir use "bin";
+   for Main use (
+       "c0001_multiples_of_3_or_5.adb"
+      ,"c0002_even_fibonacci_numbers.adb"
+      ,"g0001_multiples_of_3_or_5.adb"
+      ,"g0002_even_fibonacci_numbers.adb"
+   );
+
+   package Compiler is
+      for Default_Switches ("Ada") use
+         Alice_Project_Euler_Config.Ada_Compiler_Switches &
+         (
+              "-gnatW8"   --  Wide character encoding method
+            , "-gnat2020" --  Ada 2022 mode
+            , "-gnatX"    --  Language extensions permitted
+         );
+   end Compiler;
+
+   package Binder is
+      for Switches ("Ada") use ("-Es"); --  Symbolic traceback
+   end Binder;
+
+   package Install is
+      for Artifacts (".") use ("share");
+   end Install;
+
+end Alice_Project_Euler;

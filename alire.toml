@@ -1,0 +1,13 @@
+name = "alice_project_euler"
+description = "Alice/Project Euler, problems solved by Jane Doe"
+version = "0.1.0-dev"
+
+authors = ["Jane Doe"]
+maintainers = ["Jane Doe <jane.doe@example.com>"]
+maintainers-logins = ["janedoe"]
+
+[build-switches."*"]
+ada_version = ["-gnat2022", "-gnatX", "-gnatW8"]
+
+[[depends-on]]
+project_euler = ">=0.1.5-dev"
